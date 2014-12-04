@@ -11,8 +11,6 @@ public class Piece {
 
     Point position;
 
-    public Piece() { }
-
     private void setPosition(int x, int y){
         position = new Point(x, y);
     }
