@@ -19,6 +19,7 @@ import java.util.Collections;
 public class NewUsersDialog extends JDialog implements ActionListener {
 
     private Login login;
+    private Tournament tournament;
     private Writer writer = null;
 
     private JTextField tfUsername;
@@ -28,9 +29,10 @@ public class NewUsersDialog extends JDialog implements ActionListener {
     private JButton btnCreate;
     private JButton btnCancel;
 
-    public NewUsersDialog(Frame parent, Login login) {
+    public NewUsersDialog(Frame parent, Login login, Tournament tournament) {
         super(parent, "User Creation");
         this.login = login;
+        this.tournament = tournament;
 
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints cs = new GridBagConstraints();
@@ -91,16 +93,16 @@ public class NewUsersDialog extends JDialog implements ActionListener {
         {
             try {
                 writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("out.txt", true)));
-                if(Tournament.newUserInstances % 2 == 0)
-                    writer.append(String.valueOf(Tournament.numberOfGames)+"\n");
                 writer.append(tfUsername.getText()+"\n");
                 writer.append(pfPassword.getText()+"\n");
+
                 writer.close();
+
+                Tournament.numberOfNewUsers++;
+                System.out.println(Tournament.numberOfNewUsers + ">> number of new users");
+
             } catch (IOException e1) {
                 e1.printStackTrace();
-            } finally {
-                tfUsername.setText("");
-                pfPassword.setText("");
             }
 
             JOptionPane.showMessageDialog(NewUsersDialog.this,
@@ -109,6 +111,10 @@ public class NewUsersDialog extends JDialog implements ActionListener {
                     JOptionPane.INFORMATION_MESSAGE);
             Tournament.newUserInstances++;
             dispose();
+        }
+        tournament.gatherPlayerInfo(tfUsername.getText(), pfPassword.getText());
+        if(Tournament.numberOfNewUsers == Integer.parseInt(Tournament.numberOfPlayers)) {
+            tournament.generateMatches();
         }
     }
 }

@@ -21,6 +21,8 @@ public class StartMenu extends JFrame implements ActionListener {
     private JButton justPlay = new JButton("Just Play");
     //private JButton aboutGame = new JButton("About");
 
+    private Tournament tournament;
+
     public StartMenu(){
         setLayout(new GridLayout(2,1,3,4));
         add(newGame);
@@ -30,6 +32,8 @@ public class StartMenu extends JFrame implements ActionListener {
         newGame.addActionListener(this);
         justPlay.addActionListener(this);
         //aboutGame.addActionListener(this);
+
+        tournament = new Tournament();
 
         setSize(200, 250);
         setResizable(false);
@@ -41,7 +45,7 @@ public class StartMenu extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("New Game")){
-            new Login(); //Open the game window.
+            new Login(tournament); //Open the game window.
         }
         if(e.getActionCommand().equals("Just Play")){
             Tournament.numberOfLogins=2;

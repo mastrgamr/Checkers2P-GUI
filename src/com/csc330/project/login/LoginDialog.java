@@ -31,10 +31,15 @@ public class LoginDialog extends JDialog {
     private JButton btnCancel;
     private boolean succeeded;
 
+    private Login login;
+
     private BufferedReader br;
  
-    public LoginDialog(Frame parent) {
+    public LoginDialog(Frame parent, Login login) {
         super(parent, "User Login");
+
+        this.login = login;
+
         try {
             br = new BufferedReader(new FileReader("out.txt"));
         } catch (FileNotFoundException e) {
@@ -77,7 +82,7 @@ public class LoginDialog extends JDialog {
  
             public void actionPerformed(ActionEvent e) {
                 try {
-                    if (Login.authenticate(getUsername(), getPassword(), br)) {
+                    if (LoginDialog.this.login.authenticate(getUsername(), getPassword(), br)) {
                         JOptionPane.showMessageDialog(LoginDialog.this,
                                 "Hi " + getUsername() + "! You have successfully logged in.",
                                 "Login",
