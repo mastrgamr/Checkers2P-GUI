@@ -66,17 +66,12 @@ public class Login extends JFrame {
     }
 
     public boolean authenticate(String username, String password, BufferedReader br) throws IOException {
-        if (Tournament.numberOfLogins != 2 && Tournament.numberOfLogins == 1) {
-//            for(int i = 0; i < 2;i++)
-//                br.readLine(); //skip some lines so it does not re-read the file from the beginning
-//
-//            String user = br.readLine();
-//            System.out.println(user); //debug
-//            String pass = br.readLine();
-//            System.out.println(pass); //debug
-//            return (username.equalsIgnoreCase(user) && password.equalsIgnoreCase(pass));
+        if (Tournament.numberOfLogins != 2 && Tournament.numberOfLogins == 1) { //TODO:Skipping this, find out logins and number
+
+            System.out.println("Authenticating...");
             return tournament.hasUser(username, password); //TODO:get true value of bool, issue: all logins invalid -_-*
         } else {
+            System.out.println("Resetting...");
             Tournament.numberOfLogins = 0;
         }
         return false;

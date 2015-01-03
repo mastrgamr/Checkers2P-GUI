@@ -1,8 +1,6 @@
 package com.csc330.project.login;
 
-import com.csc330.project.checkers2p.GameBoard;
 import com.csc330.project.checkers2p.Main;
-import com.csc330.project.checkers2p.StartMenu;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -18,7 +16,9 @@ import java.io.IOException;
  * Project: Checkers2P
  * Author: Jose Martinez
  * Date: 12/1/2014
- *
+ */
+
+/**
  * This dialog pops up to allow users to login and match successful logins to the generated text file when the tournament started.
  */
 public class LoginDialog extends JDialog {

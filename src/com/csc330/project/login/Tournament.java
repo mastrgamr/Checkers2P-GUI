@@ -100,7 +100,7 @@ public class Tournament {
         }
 
         StringBuilder matches = new StringBuilder();
-        matches.append("<u>Game 1:</u>\n");
+        matches.append("Game 1:\n");
 
         Set<String> keys;
         System.out.println(round.size() + ">> size of round");
@@ -121,9 +121,9 @@ public class Tournament {
     }
 
     public boolean hasUser(String user, String pass){
-        if(round.get(0).containsKey(user) && round.get(0).get(user).equals(pass))
-            return true;
+        System.out.println(round.get(0).containsKey(user) + ">>Contains user: " + user);
+        System.out.println(round.get(0).get(user).equals(pass) + ">>paswword matches?");
 
-        return false;
+        return (round.get(0).containsKey(user) && round.get(0).get(user).equals(pass));
     }
 }
